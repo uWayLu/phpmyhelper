@@ -35,12 +35,14 @@ class Helper
         return $str;
     }
 
-    public static function cleanXss(&$input, $low = false)
+    public static function cleanXss(&$input, $low = false, $htmlify = false)
     {
         if (!is_array($input)) {
             $input = trim($input);
             $input = strip_tags($input);
-            $input = htmlspecialchars($input);
+            if ($htmlify) {
+                $input = htmlspecialchars($input);
+            }
             if ($low) {
                 return true;
             }
@@ -55,7 +57,7 @@ class Helper
         }
         $keys = array_keys($input);
         foreach ($keys as $key) {
-            self::cleanXss($input[$key]);
+            self::cleanXss($input[$key], $low);
         }
     }
 }
