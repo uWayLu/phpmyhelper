@@ -60,4 +60,15 @@ class Helper
             self::cleanXss($input[$key], $low);
         }
     }
+
+    public static function isSecureConnection(): bool
+    {
+        $is_secure = false;
+        $is_secure =
+            (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+            || ($_SERVER['SERVER_PORT'] == 443)
+            || ($_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+        ;
+        return $is_secure;
+    }
 }
