@@ -65,9 +65,9 @@ class Helper
     {
         $is_secure = false;
         $is_secure =
-            (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
-            || ($_SERVER['SERVER_PORT'] == 443)
-            || ($_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https')
+            (($_SERVER['HTTPS'] ?? 'off') !== 'off')
+            || (($_SERVER['SERVER_PORT'] ?? 0) == 443)
+            || (($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? 'http') === 'https')
         ;
         return $is_secure;
     }
