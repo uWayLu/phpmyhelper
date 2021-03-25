@@ -71,4 +71,15 @@ class Helper
         ;
         return $is_secure;
     }
+
+    // gist: https://gist.github.com/uWayLu/243d4681f1e43b18e73ccfa30ceffda0
+    public static function resolveHostname(string &$hostname)
+    {
+        $record = dns_get_record($hostname, DNS_CNAME);
+
+        if (count($record) > 0) {
+            $hostname = $record[0]['target'];
+            (__METHOD__)($hostname);
+        }
+    }
 }
