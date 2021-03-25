@@ -9,7 +9,9 @@
             "email": "u.master.o.twn@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=7.0"
+    },
     "autoload": {
         "psr-4": {
             "WebbLu\\": "src/"
